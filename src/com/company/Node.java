@@ -52,7 +52,6 @@ public class Node<K, V> {
         return "Node{" +
                 "key=" + key +
                 ", value=" + value +
-                ", nextNode=" + nextNode +
                 '}';
     }
 }

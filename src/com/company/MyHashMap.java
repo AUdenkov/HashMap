@@ -54,6 +54,34 @@ public class MyHashMap<K, V> {
         return value;
     }
 
+    public boolean remove(K key) {
+        int position = searchPosition(key.hashCode());
+        if (array[position]==null){
+            return false;
+        }
+        else {
+            int count = 0;
+            Node<K, V> temp = (Node<K, V>) array[position].get(count);
+            while (true) {
+                if (temp.getKey().hashCode() == key.hashCode()) {
+                    if (temp.getKey().equals(key)) {
+                        array[position].remove(count);
+                        if (array[position].isEmpty()){
+                           array[position]=null;
+                        }
+                        return true;
+                    }
+                }
+                if (count + 1 == array[position].size()) {
+                    break;
+                }
+                count++;
+                temp = (Node<K, V>) array[position].get(count);
+            }
+        }
+        return false;
+    }
+
     public Node<K, V> getNode(K key) {
         int position = searchPosition(key.hashCode());
         int count = 0;
@@ -83,6 +111,9 @@ public class MyHashMap<K, V> {
 
     public int getSize() {
         return size;
+    }
+
+    public void delete() {
     }
 
     public void doubleSize() {
